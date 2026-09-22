@@ -8,24 +8,24 @@ def search_copy(source_dir, destination_dir, document_id):
         os.makedirs(destination_dir)
         print(f"Created desinationd dir: {destination_dir}")
 
-    if document_id == 0:
+    if document_id == "0":
         print("Document ID is set to 0 (skipped). No folders will match.")
         return
 
     match = False
+    target_name = document_id.strip()
 
     for root, dirs, files in os.walk(source_dir):
-        for dir_name in dirs:
-            if dir_name.strip() == document_id:
-                folder_path = os.path.join(root, dir_name)
-                dest_path = os.path.join(destination_dir, dir_name)
+        if target_name in dirs:
+            folder_path = os.path.join(root, target_name)
+            dest_path = os.path.join(destination_dir, target_name)
 
-                try:
-                    shutil.copytree(folder_path, dest_path, dirs_exist_ok=True)
-                    print(f"Found path and copied to {dir_name}")
-                    match = True
-                except Exception as e:
-                    print(f"Error copying {dir_name}: {e}")
+            try:
+                shutil.copytree(folder_path, dest_path, dirs_exist_ok=True)
+                print(f"Successfully copied: '{target_name}' from {root}")                
+                match = True
+            except Exception as e:
+                print(f"Error copying {target_name}: {e}")
 
     if not match:
         print(f"No folder found matching Document ID: {document_id}")
