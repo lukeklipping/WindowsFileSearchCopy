@@ -4,7 +4,7 @@ import pandas as pd
 
 def rename_files_from_excel(target_dir, excel_path):
   try:
-    df = pd.read_excel(excel_path, sheet_name=0, header=8, engine="xlrd")
+    df = pd.read_excel(excel_path, sheet_name=0, header=7, engine="xlrd")
   except Exception as e:
     print(f"Error reading excel file: {e}")
     return
@@ -17,7 +17,7 @@ def rename_files_from_excel(target_dir, excel_path):
 
   for i, row in df.iterrows():
     original_file = str(row["File Name"]).strip()
-    description = str(row("Description")).strip()
+    description = str(row["Description"]).strip()
 
     if not original_file:
       continue
@@ -26,29 +26,29 @@ def rename_files_from_excel(target_dir, excel_path):
       old_path = file_map[original_file.lower()]
       folder_dir = os.path.dirname(old_path)
 
-    _, ext = os.path.splitext(original_file)
+      _, ext = os.path.splitext(original_file)
 
-    safe_description = (
-        description.replace("/", "-")
-        .replace("\\", "-")
-        .replace(":", "-")
-        .strip()
-    )
+      safe_description = (
+          description.replace("/", "-")
+          .replace("\\", "-")
+          .replace(":", "-")
+          .strip()
+      )
 
-    if not safe_description.lower().endswith(ext.lower()):
-      new_filename = f"{safe_description}{ext}"
+      if not safe_description.lower().endswith(ext.lower()):
+        new_filename = f"{safe_description}{ext}"
+      else:
+        new_filename = safe_description
+
+      new_path = os.path.join(folder_dir, new_filename)
+
+      try:
+        os.rename(old_path, new_path)
+        print(f"Renamed: '{original_file}' -> '{new_filename}'")
+      except Exception as e:
+          print(f"Error renaming {original_file}: {e}")
     else:
-      new_filename = safe_description
-
-    new_path = os.path.join(folder_dir, new_filename)
-
-    try:
-      os.rename(old_path, new_path)
-      print(f"Renamed: '{original_file}' -> '{new_filename}'")
-    except Exception as e:
-        print(f"Error renaming {original_file}: {e}")
-  else:
-    print(f"Could not find file: {original_file}")
+      print(f"Could not find file: {original_file}")
 
 
 
