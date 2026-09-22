@@ -4,7 +4,7 @@ import pandas as pd
 
 def rename_files_from_excel(target_dir, excel_path):
   try:
-    df = pd.read_excel(excel_path, header=8)
+    df = pd.read_excel(excel_path, sheet_name=0, header=8, engine="xlrd")
   except Exception as e:
     print(f"Error reading excel file: {e}")
     return
