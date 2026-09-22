@@ -13,7 +13,6 @@ def search_copy(source_dir, destination_dir, document_id):
         return
 
     match = False
-    print(f"\nScanning '{source_dir}' for folder name: '{doc_str}'...")
 
     for root, dirs, files in os.walk(source_dir):
         for dir_name in dirs:
