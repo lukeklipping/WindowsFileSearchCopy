@@ -74,3 +74,5 @@ file_destination = input("Enter destination folder: ")
 record_id = input("PM Record ID (0 to skip): ").strip()
 
 search_copy_targeted(directory, file_destination, record_id)
+
+input("\nDone! Press Enter to exit...")
