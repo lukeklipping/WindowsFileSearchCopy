@@ -28,7 +28,7 @@ def search_copy(source_dir, destination_dir, document_id):
                     print(f"Error copying {dir_name}: {e}")
 
     if not match:
-        print(f"No folder found matching Document ID: {doc_str}")
+        print(f"No folder found matching Document ID: {document_id}")
 
 
 
