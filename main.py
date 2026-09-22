@@ -128,6 +128,6 @@ excel_file = input("Enter path to your Excel report (.xlsx): ")
 record_id = input("PM Record ID (0 to skip): ").strip()
 
 search_copy_targeted(directory, file_destination, record_id)
-rename_files_from_excel(directory, excel_file)
+rename_files_from_excel(file_destination, excel_file)
 
 input("\nDone! Press Enter to exit...")
