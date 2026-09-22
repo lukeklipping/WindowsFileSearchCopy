@@ -19,7 +19,7 @@ def rename_files_from_excel(target_dir, excel_path):
     original_file = str(row["File Name"]).strip()
     description = str(row["Description"]).strip()
 
-    if not original_file:
+    if not original_file or original_file.lower() == "nan":
       continue
 
     if original_file.lower() in file_map:
