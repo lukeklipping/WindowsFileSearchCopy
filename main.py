@@ -16,11 +16,12 @@ def search_copy(source_dir, destination_dir, document_id):
     doc_str = (
         str(int(document_id)) if document_id.is_integer() else str(document_id)
     )
-    match = false
+    match = False
+    print(f"\nScanning '{source_dir}' for folder name: '{doc_str}'...")
 
     for root, dirs, files in os.walk(source_dir):
         for dir_name in dirs:
-            if dir_name == doc_str:
+            if dir_name.strip() == doc_str:
                 folder_path = os.path.join(root, dir_name)
                 dest_path = os.path.join(destination_dir, dir_name)
 
