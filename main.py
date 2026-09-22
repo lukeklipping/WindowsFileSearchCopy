@@ -12,10 +12,6 @@ def search_copy(source_dir, destination_dir, document_id):
         print("Document ID is set to 0 (skipped). No folders will match.")
         return
 
-  # Format document ID to string (e.g., 12345.0 -> "12345")
-    doc_str = (
-        str(int(document_id)) if document_id.is_integer() else str(document_id)
-    )
     match = False
     print(f"\nScanning '{source_dir}' for folder name: '{doc_str}'...")
 
@@ -42,7 +38,7 @@ def search_copy(source_dir, destination_dir, document_id):
 directory = input("Enter root directory: ")
 file_destination = input("Enter destination folder: ")
 
-document_id = float(input("PM project ID (0 to skip): "))
+document_id = input("PM project ID (0 to skip): ").strip()
 
 search_copy(directory, file_destination, document_id)
 
