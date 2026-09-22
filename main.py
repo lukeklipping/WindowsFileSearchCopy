@@ -121,9 +121,9 @@ def search_copy_targeted(source_dir, destination_dir, record_id):
 # --- Inputs ---
 print("=== Document ID Folder Search & Copy ===")
 print("\nCaution! Confirm PM excel sheet has been printed and saved before running this script.")
-directory = input("Enter root directory: ")
-file_destination = input("Enter destination folder: ")
-excel_file = input("Enter path to your Excel report (.xlsx): ")
+directory = input("Enter root directory: ").strip('"')
+file_destination = input("Enter destination folder: ").strip('"')
+excel_file = input("Enter path to your Excel report (.xlsx): ").strip('"')
 
 record_id = input("PM Record ID (0 to skip): ").strip()
 
